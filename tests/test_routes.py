@@ -175,6 +175,13 @@ class TestProductRoutes(TestCase):
         data = resp.get_json()
         self.assertEqual(data['name'], test_product.name)
 
+    def test_get_product_not_found(self):
+        """It should not Get a Product that does not exist"""
+        resp = self.client.get(f'{BASE_URL}/0')
+        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
+        data = resp.get_json()
+        self.assertIn("was not found", data['message'])
+
     ######################################################################
     # Utility functions
     ######################################################################
