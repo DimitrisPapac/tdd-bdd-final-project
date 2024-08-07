@@ -206,6 +206,16 @@ class TestProductRoutes(TestCase):
         data = resp.get_json()
         self.assertIn("was not found", data['message'])
 
+    def test_get_product_list(self):
+        """It should Get a list of ALL Products"""
+        num_products = 5
+        self._create_products(num_products)
+
+        resp = self.client.get(f"{BASE_URL}")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.get_json()
+        self.assertEqual(len(data), num_products)
+
     ######################################################################
     # Utility functions
     ######################################################################
