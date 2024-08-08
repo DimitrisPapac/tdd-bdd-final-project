@@ -164,10 +164,6 @@ class TestProductRoutes(TestCase):
         response = self.client.post(BASE_URL, data={}, content_type="plain/text")
         self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
-    #
-    # ADD YOUR TEST CASES HERE
-    #
-
     def test_get_product(self):
         """It should Get a single Product"""
         test_product = self._create_products()[0]
@@ -209,8 +205,7 @@ class TestProductRoutes(TestCase):
 
     def test_delete_product(self):
         """It should Delete a Product"""
-
-        # create a list products containing 5 products using the _create_products() method.
+        # create a list of products
         num_products = 5
         products = self._create_products(num_products)
         initial_count = self.get_product_count()
